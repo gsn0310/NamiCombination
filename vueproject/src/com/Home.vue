@@ -26,7 +26,7 @@
         <p>热门城市</p>
       </div>
       <ul class="this_ul">
-        <li class="li_span"  v-for="(a,i) in Hot">
+        <li class="li_span"  v-for="(a,i) in Hot"  @click="obj(a,i)">
           {{a.name}}
         </li>
       </ul>
@@ -67,6 +67,16 @@
           }
           return newObj;
         },
+        obj(a,i){
+          console.log("带你寄到了",a.name,a.id);
+          let name={name:a.name,id:a.id};
+          console.log(name);
+          //将名字传入到vuex中
+          this.$store.commit("AName",name);
+          this.$router.push({
+            path:'/Search'
+          })
+        }
       },
 
       created(){
@@ -137,7 +147,6 @@
         color: #90B4FC;
       }
     }
-
   }
   .all{
     box-sizing: border-box;

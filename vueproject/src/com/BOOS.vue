@@ -1,9 +1,7 @@
 <template>
-
     <div>
       boss页面
     </div>
-
 </template>
 
 <script>
