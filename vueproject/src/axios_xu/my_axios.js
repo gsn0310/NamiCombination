@@ -6,7 +6,7 @@ export default {
     axios({
       method:"get",
       url:url,
-      timeout:60000,
+
       header:{
         "Content-Type":"application/json;charset=UTF-8"
       }
@@ -20,7 +20,7 @@ export default {
     axios({
       method: "post",
       url:url,
-      timeout: 60000,
+
       header: {
         "Content-Type":"application/json;charset=UTF-8"
       }
