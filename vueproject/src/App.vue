@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import "./assets/css/reset.css"
+  import "./assets/js/resize"
 export default {
   name: 'App',
 
