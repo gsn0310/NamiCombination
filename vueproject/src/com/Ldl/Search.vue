@@ -30,7 +30,7 @@
         </div>
 
       <!--搜索结果-->
-      <ul class="result" v-if="search_hidden">
+      <ul class="result" v-if="search_hidden" @click="skip">
         <li v-for="(a ,i) in Submit" class="result_li" @click="Click_the_jump(a)">
             <p class="result_li_p1">{{a.name}}</p>
             <p class="result_li_p2">{{a.address}}</p>
@@ -66,6 +66,13 @@
       },
       //方法
       methods:{
+        //  跳转到商品页面
+        skip(){
+          console.log("点击到了")
+          this.$router.push({
+            path:"/boss"
+          })
+        },
         //  点击提交按钮
         submit(){
           // console.log("点击到了",this.input1);

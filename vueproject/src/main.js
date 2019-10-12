@@ -19,6 +19,10 @@ const store=new Vuex.Store({
 //结合localstorage和vuex
 import createPersistedState from 'vuex-persistedstate'
 
+//全局引入swiper
+import 'swiper/dist/css/swiper.css'
+
+
 //引入自己封装的axios请求
 import myaxios from "./axios_xu/my_axios"
 Vue.prototype.myaxios = myaxios;

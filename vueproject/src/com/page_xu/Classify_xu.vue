@@ -135,7 +135,7 @@
     color: rgba(0,0,0,0.5);
     margin: 1rem 0;
     padding-left: 3rem;
-    background: url("../../pictrue_xu/shangbu01.png") no-repeat;
+    background: url("../../assets/img/shangbu01.png") no-repeat;
     background-position: 1rem center;
     background-size: 1rem;
   }
