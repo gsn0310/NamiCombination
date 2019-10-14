@@ -1,11 +1,23 @@
 <template>
     <div>
+      <div class="Top">
+        <div>
+          <van-icon name="search" class="Top_left" @click="Toseek"/>
+          <p class="Top_middle">{{AName}}</p>
+          <van-icon name="contact"  class="Top_right"/>
+        </div>
+        <div>
+
+
+        </div>
+      </div>
+
       <!--轮播模块-->
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide fenlei01" id="fenlei011">
             <!--Slide 1-->
-            <div v-for="(v,index) in fenlei011" :key="index" class="fenleixiaokuang">
+            <div v-for="(v,index) in fenlei011" :key="index" class="fenleixiaokuang" @click="To_Xingqingye1">
               <img :src="'https://fuss10.elemecdn.com'+v.image_url">
               <p>{{v.title}}</p>
             </div>
@@ -13,7 +25,7 @@
           </div>
           <div class="swiper-slide fenlei02" id="fenlei022">
             <!--Slide 2-->
-            <div v-for="(v,index) in fenlei022" :key="index" class="fenleixiaokuang">
+            <div v-for="(v,index) in fenlei022" :key="index" class="fenleixiaokuang" @click="To_Xingqingye1">
               <img :src="'https://fuss10.elemecdn.com'+v.image_url">
               <p>{{v.title}}</p>
             </div>
@@ -27,7 +39,7 @@
       <!--中间的灰色间隙-->
       <div class="huisejianxi"></div>
       <!--附近商家商品展示栏-->
-      <div class="goodszhongkuang">
+      <div class="zhanshilan">
         <p class="fujinshangjia">附近商家</p>
         <div class="goods" v-for="(v,index) in goodsArr" :key="index">
           <img :src="'http://elm.cangdu.org/img/'+v.image_path">
@@ -58,6 +70,13 @@
       },
       data(){
           return{
+
+            //    变量接受传递过来的经纬度
+            Geohash:'',
+            //  接受请求的值
+            AName:'',
+
+
             fenlei011:[],
             fenlei022:[],
             goodsArr:[]
@@ -77,7 +96,35 @@
         Vue.prototype.myaxios.get("https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762",(data)=>{
           // console.log(data);
          this.goodsArr = data;
-        },(err)=>{})
+        },(err)=>{});
+
+
+        //  接收到前面传递的值
+        // console.log(this.$route.query,"获取到的");
+        this.Geohash=this.$route.query.Geohash;
+        //  发起请求根据经纬度进行修改值
+        Vue.prototype.myaxios.get("https://elm.cangdu.org/v2/pois/"+this.Geohash,(data)=>{
+          console.log(data.name);
+          this.AName=data.name
+        })
+
+
+      },
+      methods:{
+        To_Xingqingye1(e){
+          //获取点击的具体详情名
+          let X_name =e.currentTarget.lastElementChild.innerHTML;
+         //点击配置路由发起页面跳转
+          this.$router.push({path:"/ToXingQingYe",query:{Xname:X_name}});
+        },
+
+        Toseek(){
+          console.log("点击到了");
+          this.$router.push({
+            path:'/Seek'
+          })
+        }
+
 
       }
 
@@ -89,12 +136,10 @@
     width: 100%;
     height: 100%;
   }
-
-.goodszhongkuang{
-  width: 100%;
-  height: 25rem;
-  overflow:auto;
+.zhanshilan{
+  background-color: white;
 }
+
 
   .swiper-container {
     width: 100%;
@@ -102,6 +147,7 @@
     margin: 1.25rem auto;
     margin-top: 0;
     margin-bottom: 0;
+    background-color: white;
   }
   /*.fenlei01{*/
     /*!*background-color: aqua;*!*/
@@ -133,7 +179,7 @@
   .fujinshangjia{
     font-size: 0.75rem;
     color: rgba(0,0,0,0.5);
-    margin: 1rem 0;
+    padding: 1rem 0;
     padding-left: 3rem;
     background: url("../../assets/img/shangbu01.png") no-repeat;
     background-position: 1rem center;
@@ -243,4 +289,43 @@
   .p3_s2>span>span{
     color: blue;
   }
+
+
+
+
+  .Top{
+    background-color: #3190e8;
+    position: static;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3.35rem;
+    color: white;
+    text-align: center;
+  }
+  .Top_left{
+
+    float: left;
+    line-height: 3.35rem;
+    left: 2rem;
+    font-size: 1.5rem;
+
+  }
+  .Top_middle{
+    display: inline-block;
+    line-height: 3.35rem;
+    width: 40%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .Top_right{
+    float: right;
+    line-height: 3.35rem;
+    right: 2rem;
+    font-size: 1.5rem;
+  }
+
 </style>
