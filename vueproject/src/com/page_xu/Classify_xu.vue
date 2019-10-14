@@ -7,8 +7,6 @@
           <van-icon name="contact"  class="Top_right"/>
         </div>
         <div>
-
-
         </div>
       </div>
 
@@ -65,18 +63,14 @@
           loop: false,
           // 如果需要分页器
           pagination: '.swiper-pagination',
-
         })
       },
       data(){
           return{
-
             //    变量接受传递过来的经纬度
             Geohash:'',
             //  接受请求的值
             AName:'',
-
-
             fenlei011:[],
             fenlei022:[],
             goodsArr:[]
@@ -98,7 +92,6 @@
          this.goodsArr = data;
         },(err)=>{});
 
-
         //  接收到前面传递的值
         // console.log(this.$route.query,"获取到的");
         this.Geohash=this.$route.query.Geohash;
@@ -107,27 +100,21 @@
           console.log(data.name);
           this.AName=data.name
         })
-
-
       },
       methods:{
         To_Xingqingye1(e){
           //获取点击的具体详情名
           let X_name =e.currentTarget.lastElementChild.innerHTML;
          //点击配置路由发起页面跳转
-          this.$router.push({path:"/ToXingQingYe",query:{Xname:X_name}});
+          this.$router.push({path:"/XingQingYe",query:{Xname:X_name}});
         },
-
         Toseek(){
           console.log("点击到了");
           this.$router.push({
             path:'/Seek'
           })
         }
-
-
       }
-
     }
 </script>
 

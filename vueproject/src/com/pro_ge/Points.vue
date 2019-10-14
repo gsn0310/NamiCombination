@@ -56,7 +56,7 @@
           this.hiddens=false
         },
         banlace(){
-          this.$router.push({path:'/details',query:{requerys:this.content}})
+          this.$router.push({path:'/Details',query:{requerys:this.content}})
         }
       },
       beforeCreate(){

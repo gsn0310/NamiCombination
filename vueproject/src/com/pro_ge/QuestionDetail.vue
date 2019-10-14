@@ -2,7 +2,7 @@
    <div class="one">
      <!--头部-->
      <div class="one1">
-       <router-link :to="{path:'/server'}" class="two"><</router-link>
+       <router-link :to="{path:'/ServiceGe'}" class="two"><</router-link>
        <h2 class="bounceLnRight">{{data.title}}</h2>
      </div>
      <div class="titles bounceLnRight">{{data.servers}}</div>

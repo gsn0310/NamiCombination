@@ -18,7 +18,6 @@
         </div>
         <div class="three2">提现</div>
       </div>
-
     </div>
     <div class="one3">交易明细</div>
     <div class="one4">
@@ -38,7 +37,7 @@
     },
     methods:{
       banlace(){
-this.$router.push({path:'/detail',query:{requerys:this.content}})
+this.$router.push({path:'/Detail',query:{requerys:this.content}})
       }
     },
    beforeCreate(){

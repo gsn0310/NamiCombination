@@ -2,7 +2,6 @@
   <div id="app1">
     <div id="one1">
       <router-link :to="{path:'/Mine'}" class="two">< </router-link>
-
       <h2>账户信息</h2>
     </div>
     <div id="one2">

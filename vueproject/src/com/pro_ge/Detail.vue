@@ -2,7 +2,7 @@
   <div class="detail">
     <!--头部-->
     <div class="one1">
-      <router-link :to="{path:'/balance'}" class="two"><</router-link>
+      <router-link :to="{path:'/Banlance'}" class="two"><</router-link>
       <h2>余额问题</h2>
     </div>
     <div class="one2">{{detal.requerys}}</div>

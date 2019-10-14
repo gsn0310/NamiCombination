@@ -6,6 +6,8 @@ export default ({
   *   使用方法为
   *   JSON.parse(localStrorage[""]||"{}")
   *   如果想取值的话
+  *   例如在state中一个变量key1来接受传递过来的值
+  *   key1:JSON.parse(localStorage["key1"] || "{}"),
   *
   * */
   state:{

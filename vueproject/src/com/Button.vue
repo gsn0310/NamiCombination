@@ -7,7 +7,9 @@
         <van-tabbar-item icon="friends-o" @click="indent">订单</van-tabbar-item>
         <van-tabbar-item icon="setting-o" @click="mine">我的</van-tabbar-item>
       </van-tabbar>
+      <transition name="fade" mode="out-in">
       <RouterView></RouterView>
+      </transition>
     </div>
 </template>
 
@@ -20,7 +22,6 @@
           }
       },
       methods:{
-
         Take_Out(){
           console.log("点击跳转到外卖");
           this.$router.push({
@@ -47,9 +48,15 @@
         }
       },
 
+
     }
 </script>
 
 <style scoped>
-
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
 </style>

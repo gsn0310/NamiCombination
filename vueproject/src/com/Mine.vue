@@ -1,13 +1,18 @@
 <template>
   <div id="appone">
-    <div id="tou">
-      <div id="tou1">
-        <span><</span>
-        <h2>我的</h2>
-        <div class="clear"></div>
+    <div class="Top">
+      <div >
+        <van-icon name="search" class="Top_left" @click="Toseek"/>
+        <p class="Top_middle">{{AName}}</p>
+        <van-icon name="contact"  class="Top_right"/>
       </div>
+      <div>
+      </div>
+    </div>
+    <div id="tou">
+
       <div id="tou2">
-        <router-link :to="{path:'/xinxi'}" id="toua">
+        <router-link :to="{path:'/SubmitGe'}" id="toua">
           <div class="img1">
             <img src=".././assets/img/default.jpg" /></div>
           <div class="zj">
@@ -20,13 +25,13 @@
         </router-link>
       </div>
     </div>
+    <!--第二部分-->
     <ul id="yue">
       <li>
-        <router-link :to="{path:'/balance'}" class="yue1">
+        <router-link :to="{path:'/Banlance'}" class="yue1">
           <span>0.00</span><span>元</span>
           <div>我的余额</div>
         </router-link>
-
       </li>
       <li>
         <router-link :to="{path:'/discount'}" class="yue1">
@@ -36,13 +41,13 @@
 
       </li>
       <li>
-        <router-link :to="{path:'/integral'}" class="yue1">
+        <router-link :to="{path:'/Points'}" class="yue1">
           <span style="color:#6AC20B ">0</span><span>分</span>
           <div>我的积分</div>
         </router-link>
-
       </li>
     </ul>
+    <!--第三部分-->
     <div id="dd">
       <router-link :to="{path:'/Order'}" class="dd1">
         <img src=".././assets/img/alignleft.png" height="20" width="20"/>
@@ -52,16 +57,19 @@
         <img src=".././assets/img/jifen.png" height="20" width="20"/>
         <div>积分商城  <span>> </span></div>
       </router-link>
-      <router-link :to="{path:'/card'}" class="dd1">
+      <router-link :to="{path:'/Eleme'}" class="dd1">
         <img src=".././assets/img/hg.png" height="20" width="20"/>
         <div style="border-bottom: none">饿了么会员卡  <span style="margin-left: 13rem">> </span></div>
       </router-link>
     </div>
+    <!--第四部分-->
     <div id="fw">
-      <router-link :to="{path:'/'}" class="dd1">
+      <!--服务中心-->
+      <router-link :to="{path:'/ServiceGe'}" class="dd1">
         <img src=".././assets/img/fk.png" height="20" width="20"/>
         <div>服务中心  <span>> </span></div>
       </router-link>
+      <!--下载饿了么app-->
       <router-link :to="{path:'/'}" class="dd1">
         <img src=".././assets/img/E.png" height="20" width="20"/>
         <div style="border: none">下载饿了么app  <span style="margin-left: 12.1rem">> </span></div>
@@ -72,12 +80,78 @@
 </template>
 
 <script>
+  import Vue from "vue"
   export default {
-    name: "ProFileGe"
+    name: "ProFileGe",
+    data(){
+      return{
+        //    变量接受传递过来的经纬度
+        Geohash:'',
+        //  接受请求的值
+        AName:'',
+
+      }
+
+    },
+    methods:{
+      Toseek(){
+        console.log("点击到了");
+        this.$router.push({
+          path:'/Seek'
+        })
+      }
+
+    },
+    created(){
+      //  接收到前面传递的值
+      // console.log(this.$route.query,"获取到的");
+      this.Geohash=this.$route.query.Geohash;
+      //  发起请求根据经纬度进行修改值
+      Vue.prototype.myaxios.get("https://elm.cangdu.org/v2/pois/"+this.Geohash,(data)=>{
+        console.log(data.name);
+        this.AName=data.name
+      })
+
+    }
   }
 </script>
 
 <style scoped>
+  .Top{
+    background-color: #3190e8;
+    position: static;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3.35rem;
+    color: white;
+    text-align: center;
+  }
+  .Top_left{
+
+    float: left;
+    line-height: 3.35rem;
+    left: 2rem;
+    font-size: 1.5rem;
+
+  }
+  .Top_middle{
+    display: inline-block;
+    line-height: 3.35rem;
+    width: 40%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .Top_right{
+    float: right;
+    line-height: 3.35rem;
+    right: 2rem;
+    font-size: 1.5rem;
+  }
+
   #appone{
     width: 100%;
     height: 100%;

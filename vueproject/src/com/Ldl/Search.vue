@@ -21,7 +21,7 @@
       <div class="Search_Button" v-if="History_Hidden">
           <p class="Search_Button_p">搜索历史</p>
           <ul class="result">
-            <li v-for="(a,i) in history_search" class="result_li">
+            <li v-for="(a,i) in history_search" class="result_li" @click="Click_the_jump_history(a)">
               <p class="result_li_p1">{{a.name}}</p>
               <p class="result_li_p2">{{a.address}}</p>
             </li>
@@ -30,7 +30,7 @@
         </div>
 
       <!--搜索结果-->
-      <ul class="result" v-if="search_hidden" @click="skip">
+      <ul class="result" v-if="search_hidden" >
         <li v-for="(a ,i) in Submit" class="result_li" @click="Click_the_jump(a)">
             <p class="result_li_p1">{{a.name}}</p>
             <p class="result_li_p2">{{a.address}}</p>
@@ -67,12 +67,7 @@
       //方法
       methods:{
         //  跳转到商品页面
-        skip(){
-          console.log("点击到了")
-          this.$router.push({
-            path:"/boss"
-          })
-        },
+
         //  点击提交按钮
         submit(){
           // console.log("点击到了",this.input1);
@@ -89,19 +84,36 @@
         //点击搜索结果
         Click_the_jump(a){
           console.log("点击到了",a);
-          //做判断如果
+          //做判断如果重复就返回一个
           let c=this.search_history.find((err)=>{
             return err.name==a.name
           });
+          //如果没有走上面的就走这个判断
           if(!c){
-            let b={name:a.name,address:a.address};
+            let b=a;
+            console.log(a);
             this.search_history.push(b);
           }
+          //将值存入localstorage中,并且转义JSON
           let search_history1=JSON.stringify(this.search_history);
+          //转义过程
           localStorage.setItem("search_history",search_history1);
-          console.log(this.search_history)
-
-
+          //最终接收
+          console.log(this.search_history);
+          //进行路由跳转并且传值
+          this.$router.push({
+            path:"/",
+            query:{Name:a.name,Geohash:a.geohash},
+          })
+        },
+        //点击搜索历史
+        Click_the_jump_history(a){
+          console.log(a);
+          //进行传值传值
+          this.$router.push({
+            path:'/boss',
+            query:{Name:a.name,Geohash:a.geohash},
+          })
         },
         //点击清空所有
         empty(){
@@ -112,13 +124,14 @@
       },
       // 创造前
       created(){
+
         // console.log(this.$store.state.vuexone,"页面获取");
         let a=this.$store.state.vuexone.AName;
         // console.log(a);
         this.city_name=a.name;
         this.city_id=a.id;
 
-      //  接受点击后的搜索历史
+      //  接收点击后的搜索历史
       //  转义json
         var ojk=localStorage.getItem("search_history");
         ojk=JSON.parse(ojk);

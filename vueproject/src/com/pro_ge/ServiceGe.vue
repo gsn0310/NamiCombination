@@ -39,11 +39,11 @@
       //使用router对象用来切换传值
       getquery(v) {
         // console.log(this.content[v])
-        this.$router.push({path: "/question", query: {servers: this.content[v],title:this.caption[v]}})
+        this.$router.push({path: "/QuestionDetail", query: {servers: this.content[v],title:this.caption[v]}})
 
       },
       server(){
-        this.$router.push({path:"/customer"})
+        this.$router.push({path:"/ZaiXianKefu"})
       }
     },
     beforeCreate() {

@@ -36,7 +36,7 @@
       <ul>
         <li v-for="(a,i,keys) in All">
           <p class="all_p"> {{i}}(按照字母排序)</p>
-          <span v-for="(b,index) in a" class="all_span">
+          <span v-for="(b,index) in a" class="all_span" @click="obj1(b)">
             {{b.name}}
           </span>
         </li>
@@ -67,15 +67,27 @@
           }
           return newObj;
         },
+        //热门城市点击跳转
         obj(a,i){
           console.log("带你寄到了",a.name,a.id);
-          let name={name:a.name,id:a.id};
+          let name={a};
           console.log(name);
           //将名字传入到vuex中
           this.$store.commit("AName",name);
           this.$router.push({
             path:'/Search'
           })
+        },
+        //全部城市点击跳转
+        obj1(a){
+          // console.log(a);
+          let name={a};
+          console.log(name);
+          this.$store.commit("AName",name);
+          this.$router.push({
+            path:'/Search'
+          })
+
         }
       },
 
