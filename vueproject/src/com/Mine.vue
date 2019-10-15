@@ -10,13 +10,12 @@
       </div>
     </div>
     <div id="tou">
-
       <div id="tou2">
-        <router-link :to="{path:'/SubmitGe'}" id="toua">
+        <router-link :to="names==''?{path:'/PassLogin_ge'}:{path:'/AccountGe'}" id="toua">
           <div class="img1">
             <img src=".././assets/img/default.jpg" /></div>
           <div class="zj">
-            <div>svdasd</div>
+            <div>{{names}}</div>
             <div><img src=".././assets/img/sj.png" height="20" width="20"/><span>暂无绑定手机号</span>
             </div>
           </div>
@@ -34,7 +33,7 @@
         </router-link>
       </li>
       <li>
-        <router-link :to="{path:'/discount'}" class="yue1">
+        <router-link :to="{path:'/Benefit'}" class="yue1">
           <span style="color: #FF5F3E">3</span><span>个</span>
           <div>我的优惠</div>
         </router-link>
@@ -89,6 +88,7 @@
         Geohash:'',
         //  接受请求的值
         AName:'',
+        names:''
 
       }
 
@@ -110,7 +110,12 @@
       Vue.prototype.myaxios.get("https://elm.cangdu.org/v2/pois/"+this.Geohash,(data)=>{
         console.log(data.name);
         this.AName=data.name
+      });
+      this.myaxios.get("https://elm.cangdu.org/v1/user",(res)=>{
+        this.names=res.username
+        console.log(res);
       })
+
 
     }
   }
@@ -158,30 +163,11 @@
     background-color:#F5F5F5 ;
   }
   #tou{
-    background: dodgerblue;
+    background:#3190e8;
     width: 100%;
-    height: 9rem;
+    height: 7rem;
   }
-  #tou1{
-    text-align: center;
-    width: 100%;
-    height: 2.5rem;
-    color: white;
-    box-sizing: border-box;
-  }
-  #tou1 >span{
-    width: 2rem;
-    float: left;
-    font-size:1.8rem;
-    padding: 0.4rem 0;
-  }
-  #tou1 >h2{
-    padding: 0.6rem 0;
-    width: 21rem;
-    float: left;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
+
   #tou2{
     width: 100%;
     padding: 1rem;

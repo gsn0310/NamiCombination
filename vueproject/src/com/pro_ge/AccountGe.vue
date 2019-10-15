@@ -28,6 +28,16 @@
       </router-link>
     </div>
     <div id="btn" @click="Sign">退出登录</div>
+    <!--点击登录弹出提示框-->
+    <div class="login1  heartBeat" v-if="hiddens">
+      <div>
+        <img src="../../assets/img/tanhao.png"/></div>
+      <div>是否退出登录</div>
+      <div class="login2">
+      <div @click="AlterHide">再等等</div>
+        <div>退出登录</div>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -35,10 +45,19 @@
 <script>
   export default {
     name: "AccountGe",
+    data(){
+      return{
+        hiddens:false
+      }
+    },
     methods:{
       Sign(){
-
+this.hiddens=true
+      },
+      AlterHide(){
+        this.hiddens=false
       }
+
     }
   }
 </script>
@@ -175,5 +194,47 @@
     padding: 1rem;
     margin: 2rem 0.5rem;
     border-radius: 8%;
+  }
+
+  .login1{
+    width: 21rem;
+    background-color: white;
+    text-align: center;
+    border-radius: 6%;
+    position: absolute;
+    top: 10rem;
+    left: 1rem;
+  }
+  .login1>div:nth-child(1){
+    padding:1rem 0;
+
+  }
+
+  .login1>div img{
+    width: 6rem;
+  }
+  .login1>div:nth-child(2) {
+   margin: 1.5rem 0;
+    font-size: 1.8rem;
+    color: #616161;
+  }
+  .login2{
+    width: 18rem;
+    font-size: 1rem;
+  color: white;
+    display: flex;
+    justify-content: space-around;
+   margin: 2.5rem 0 1.8rem;
+  }
+  .login2>div:nth-child(1){
+    background-color:#C1C1C1;
+    padding: .8rem 1.5rem;
+    border-radius: .4rem;
+    margin-left: 3rem;
+  }
+  .login2>div:nth-child(2){
+    background-color:#DD6B55 ;
+    padding: .8rem 1.5rem;
+    border-radius: .4rem;
   }
 </style>
