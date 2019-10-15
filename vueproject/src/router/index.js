@@ -22,7 +22,8 @@ import Timer from  '../com/Ldl/Timer'
 
 //外卖页面
 import Classify from '../com/page_xu/Classify_xu'
-
+//详情页面
+import XingQingYe from '../com/page_xu/XingQingYe'
 
 
 
@@ -49,8 +50,7 @@ import Details from '../com/pro_ge/Details'
 
 
 
-//
-import XingQingYe from '../com/page_xu/XingQingYe'
+
 
 
 
@@ -107,9 +107,10 @@ export default new Router({
 
 
 
-
+    //外卖页到详情页
     {path:"/XingQingYe",component:XingQingYe},
-
+    //详情页返回外卖页
+    {path:"/back_Classify",component:Classify},
 
 
   ]

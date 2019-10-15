@@ -20,7 +20,11 @@ export default ({
     AName(state,res){
       state.AName=res;
       console.log(state.AName,"vuex中的数据")
-    }
+    },
+    shangpu_data(state,res){
+      state.shangpu_data=res;
+      console.log(state.shangpu_data,"vuex中的数据")
+    },
   },
   //计算属性
   getters:{
