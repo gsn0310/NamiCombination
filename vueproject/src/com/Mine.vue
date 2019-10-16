@@ -11,7 +11,7 @@
     </div>
     <div id="tou">
       <div id="tou2">
-        <router-link :to="names==''?{path:'/PassLogin_ge'}:{path:'/AccountGe'}" id="toua">
+        <router-link :to="names=='登录/注册'?{path:'/PassLogin_ge'}:{path:'/AccountGe'}" id="toua">
           <div class="img1">
             <img src=".././assets/img/default.jpg" /></div>
           <div class="zj">
@@ -89,9 +89,7 @@
         //  接受请求的值
         AName:'',
         names:''
-
       }
-
     },
     methods:{
       Toseek(){
@@ -99,8 +97,11 @@
         this.$router.push({
           path:'/Seek'
         })
+      },
+    //  接受头像
+      imgs(){
+        return this.$route.query.imgs
       }
-
     },
     created(){
       //  接收到前面传递的值
@@ -108,15 +109,23 @@
       this.Geohash=this.$route.query.Geohash;
       //  发起请求根据经纬度进行修改值
       Vue.prototype.myaxios.get("https://elm.cangdu.org/v2/pois/"+this.Geohash,(data)=>{
-        console.log(data.name);
+        // console.log(data.name);
         this.AName=data.name
       });
+      //获取用户信息
       this.myaxios.get("https://elm.cangdu.org/v1/user",(res)=>{
-        this.names=res.username
+        console.log(1);
+        if(res.status==0) {
+          this.names = "登录/注册"
+        }
+        if(res.__v==0){
+          this.names=res.username
+        }
+
         console.log(res);
+      },(err)=>{
+        console.log("失败")
       })
-
-
     }
   }
 </script>
