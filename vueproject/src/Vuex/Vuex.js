@@ -13,18 +13,41 @@ export default ({
   state:{
     //全部城市的值
     AName:{},
+    //地址信息
+    dizhi_data:[],
+    //搜索店铺信息得搜索记录
+    cun_dianpusousuojilu:[],
+
   },
   //方法
   mutations:{
     //获取到全部城市中给的值
     AName(state,res){
       state.AName=res;
-      console.log(state.AName,"vuex中的数据")
     },
+    //商铺信息
     shangpu_data(state,res){
       state.shangpu_data=res;
       console.log(state.shangpu_data,"vuex中的数据")
     },
+    //地址信息
+    dizhi_data(state,res){
+      //把添加的值存到数组里
+      console.log(123123123, res);
+      state.dizhi_data.push(res);
+    },
+    //搜索店铺信息得搜索记录
+    cun_dianpusousuojilu(state,res){
+      state.cun_dianpusousuojilu.push(res);
+    },
+    //删除单个搜索店铺信息得搜索记录
+    shanchu_dangelishishuju(state,res){
+      state.cun_dianpusousuojilu.splice(state.cun_dianpusousuojilu.indexOf(res),1);
+    },
+    //清空店铺信息的搜素记录
+    qingkong_lishi(state,res){
+      state.cun_dianpusousuojilu = [];
+    }
   },
   //计算属性
   getters:{
