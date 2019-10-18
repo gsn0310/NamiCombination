@@ -171,7 +171,7 @@ this.hiddens=false
   .change5{
     background-color: #4CD964;
   }
-  .login1{
+   .login1{
     width: 18rem;
     background-color: white;
     text-align: center;

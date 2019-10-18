@@ -2,7 +2,7 @@
   <div class="app3">
     <!--顶层部分-->
     <div class="one1">
-      <router-link :to="{path:'/pass'}" class="two"> <</router-link>
+      <router-link :to="{path:'/AccountGe'}" class="two"> <</router-link>
       <h2>重置密码</h2>
     </div>
     <!--中间部分-->
@@ -96,23 +96,25 @@
         }else if(this.password1==this.password2){
           this.hiddens=true
         }
-
-        //  修改密码连接
+console.log(this.username,this.password,this.password1,this.password2)
+        //  修改重置密码连接
         this.myaxios.post("https://elm.cangdu.org/v2/changepassword", {
           username: this.username,
-          oldpassWord: this.password,
+          oldpassWord:this.password,
           newpassword: this.password1,
           confirmpassword: this.password2,
           captcha_code: this.psd
         }, (res) => {
           //判断验证码输入是否正确
           this.status=res
+          console.log(res);
           if (this.status.status == 0) {
             this.hiddens = true
             this.alertnew = this.status.message
             console.log( this.status.message)
           }
-          if(res.__v==0){
+          //判断修改密码成功时跳转到个人中心
+          if(res.status==1){
             this.$router.push({path:'./Mine'})
           }
         })
