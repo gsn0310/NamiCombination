@@ -31,6 +31,7 @@
       },
       created(){
         //  接收到前面传递的值
+        // 加点东西
         // console.log(this.$route.query,"获取到的");
         this.Geohash=this.$route.query.Geohash;
         //  发起请求根据经纬度进行修改值
@@ -38,6 +39,8 @@
           console.log(data.name);
           this.AName=data.name
         })
+
+        // 加点东西
       }
     }
 </script>
